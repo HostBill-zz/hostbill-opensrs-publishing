@@ -1,7 +1,7 @@
 OpenSRS Publishing Module for Hostbill
 ======================================
 
-Allows Hostbill to automate the management of goMobi accounts via XML-API.
+Allows Hostbill to automate the management of OpenSRS goMobi accounts via XML-API.
 
 Hostbill Commands
 -----------------
@@ -23,7 +23,7 @@ Hostbill Integration
 How to Install
 --------------
 
-Just drop `class.opensrs_publishing.php` and the `opensrs_publishing` folder into `includes/modules/Hosting/` folder of your HostBill install.
+Just drop `class.opensrs_publishing.php` and the `opensrs_publishing` folder into `includes/modules/Hosting/` folder of your HostBill install then activate the module from inside HostBill.
 
 Future Ideas
 ------------
