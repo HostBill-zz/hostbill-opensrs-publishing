@@ -11,7 +11,7 @@ class opensrs_publishing extends HostingModule {
 
 	// options for the product configuration from Settings => Products & Services => Product => Connect with Module
 	protected $options = array(
-		'option1' =>array (
+		'option1' => array (
 			'name' => 'service',
 			'value' => 'gomobi',
 			'type' => 'select',
@@ -21,8 +21,8 @@ class opensrs_publishing extends HostingModule {
 
 	protected $lang = array(
 		'english' => array(
-		    'opensrs_publishingservice' => 'Publishing Service',
-		    'OSRSPLoginTo' => 'Login to goMobi'
+			'opensrs_publishingservice' => 'Publishing Service',
+			'OSRSPLoginTo' => 'Login to goMobi'
 		)
 	);
 
@@ -38,34 +38,34 @@ class opensrs_publishing extends HostingModule {
 		'nameservers' => false,
 		'field1' => false,               // 5
 		'field2' => false                // 6
-    );
+	);
 
-    protected $serverFieldsDescription = array(
-        'username' => 'User ID',
-        'hash' => 'Private Key',
-        'ssl' => 'Test Mode',
-    );
+	protected $serverFieldsDescription = array(
+		'username' => 'User ID',
+		'hash' => 'Private Key',
+		'ssl' => 'Test Mode'
+	);
 
 	// $details are a specific data for each account. REQUIRED names are 'username', 'password', 'domain'
 	protected $details = array(
-	    'option1' => array (
-	            'name' => 'username',
-	            'value' => false,
-	            'type' => 'input',
-	            'default' =>false
-	    ),
-	    'option2' => array (
-	            'name' => 'password',
-	            'value' => false,
-	            'type' => 'input',
-	            'default'=> false
-	    ),
-	    'option3' => array (
-	            'name' => 'domain',
-	            'value' => false,
-	            'type' => 'input',
-	            'default' =>false
-	    )
+		'option1' => array (
+			'name' => 'username',
+			'value' => false,
+			'type' => 'input',
+			'default' =>false
+		),
+		'option2' => array (
+			'name' => 'password',
+			'value' => false,
+			'type' => 'input',
+			'default'=> false
+		),
+		'option3' => array (
+			'name' => 'domain',
+			'value' => false,
+			'type' => 'input',
+			'default' =>false
+		)
 	);
 
 	// you can add your own command and create method to handle the action
@@ -123,8 +123,8 @@ class opensrs_publishing extends HostingModule {
 	}
 
 	public function Suspend() {
-		if($response = $this->api('disable')) {
-		    if ($response->response_code == 200) {
+		if ($response = $this->api('disable')) {
+			if ($response->response_code == 200) {
 				return true;
 			} else {
 				$this->addError($response->response_text);
@@ -136,8 +136,8 @@ class opensrs_publishing extends HostingModule {
 	}
 
 	public function Unsuspend() {
-		if($response = $this->api('enable')) {
-		    if ($response->response_code == 200) {
+		if ($response = $this->api('enable')) {
+			if ($response->response_code == 200) {
 				return true;
 			} else {
 				$this->addError($response->response_text);
@@ -149,8 +149,8 @@ class opensrs_publishing extends HostingModule {
 	}
 
 	public function Terminate() {
-		if($response = $this->api('delete')) {
-		    if ($response->response_code == 200) {
+		if ($response = $this->api('delete')) {
+			if ($response->response_code == 200) {
 				return true;
 			} else {
 				$this->addError($response->response_text);
@@ -162,9 +162,9 @@ class opensrs_publishing extends HostingModule {
 	}
 
 	public function Expire() {
-		if($response = $this->api('let_expire')) {
+		if ($response = $this->api('let_expire')) {
 			if ($response->response_code == 200) {
-		    	$this->addInfo($response->response_text);
+				$this->addInfo($response->response_text);
 				return true;
 			} else {
 				$this->addError($response->response_text);
@@ -176,9 +176,9 @@ class opensrs_publishing extends HostingModule {
 	}
 
 	public function Unexpire() {
-		if($response = $this->api('enable')) {
-		    if ($response->response_code == 200) {
-		    	$this->addInfo($response->response_text);
+		if ($response = $this->api('enable')) {
+			if ($response->response_code == 200) {
+				$this->addInfo($response->response_text);
 				return true;
 			} else {
 				$this->addError($response->response_text);
@@ -194,14 +194,14 @@ class opensrs_publishing extends HostingModule {
 
 	public function testConnection() {
 		return $this->is_connected();
-    }
+	}
 
 	public function getCustomTemplate($method) {
-        if(in_array($method,array('LoginInfo','OSRSPLoginTo'))) {
-            return MAINDIR.'includes'.DS.'modules'.DS.'Hosting'.DS.'opensrs_publishing'.DS.'template.tpl';
-        }
-        return '';
-    }
+		if (in_array($method,array('LoginInfo','OSRSPLoginTo'))) {
+			return MAINDIR.'includes'.DS.'modules'.DS.'Hosting'.DS.'opensrs_publishing'.DS.'template.tpl';
+		}
+		return '';
+	}
 
 	public function LoginInfo() {}
 
@@ -226,17 +226,17 @@ class opensrs_publishing extends HostingModule {
 	/** Integration Helpers **/
 
 	private function is_connected() {
-    	if($this->connected == true) return true;
+		if($this->connected == true) return true;
 
-    	$attributes = array(
-    		'sender' => 'OpenSRS SERVER',
-		    'version' => '2.32',
-		    'state' => 'ready'
-    	);
+		$attributes = array(
+			'sender' => 'OpenSRS SERVER',
+			'version' => '2.32',
+			'state' => 'ready'
+		);
 
-    	$api_obj = $this->buildNewAPIObject('version','check',$attributes);
+		$api_obj = $this->buildNewAPIObject('version','check',$attributes);
 
-    	if ($response = $this->post($api_obj->saveXML())) {
+		if ($response = $this->post($api_obj->saveXML())) {
 			if ($response->response_code == 401) {
 				$this->addError($response->response_text);
 				return false;
@@ -244,10 +244,10 @@ class opensrs_publishing extends HostingModule {
 				$this->connected = true;
 				return true;
 			}
-    	} else {
-    		$this->addError("Couldn't Connect To Host.");
+		} else {
+			$this->addError("Couldn't Connect To Host.");
 			return false;
-    	}
+		}
 	}
 
 	public function api($action,$attributes = array()) {
@@ -275,7 +275,7 @@ class opensrs_publishing extends HostingModule {
 			CURLOPT_POST => true,
 			CURLOPT_HTTPHEADER => $headers,
 			CURLOPT_POSTFIELDS => $payload,
-    		CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_FOLLOWLOCATION => false
 		));
 
@@ -346,7 +346,7 @@ class opensrs_publishing extends HostingModule {
 			}
 		}
 
-        return $api;
+		return $api;
 	}
 
 	/**
@@ -383,11 +383,11 @@ class opensrs_publishing extends HostingModule {
 		$dom = new DOMImplementation();
 		$dtd = $dom->createDocumentType('OPS_envelope','','ops.dtd');
 		$doc = $dom->createDocument('','',$dtd);
-        $doc->encoding = 'UTF-8';
-        $doc->standalone = false;
-        $doc->formatOutput = true;
+		$doc->encoding = 'UTF-8';
+		$doc->standalone = false;
+		$doc->formatOutput = true;
 
-        $envelope = $doc->createElement('OPS_envelope');
+		$envelope = $doc->createElement('OPS_envelope');
 
 		$header = $doc->createElement('header');
 		$header->appendChild($doc->createElement('version','0.9'));
