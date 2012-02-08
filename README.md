@@ -20,13 +20,20 @@ Hostbill Integration
 * client area login button that submits form directly to resellers domainadmin.com url
 * test configuration (it doesn't seem to like the current check version command but it will tell us if logged in)
 
+Changelog
+---------
+
+* 1.0.3 - reorganize files to follow HostBill directories and for future feature expansion
+* 1.0.2 - original release to github
+
 How to Install
 --------------
 
-Just drop `class.opensrs_publishing.php` and the `opensrs_publishing` folder into `includes/modules/Hosting/` folder of your HostBill install then activate the module from inside HostBill.
+Just extract zip of github project into the root of your HostBill install then activate the module from inside HostBill.
 
 Future Ideas
 ------------
 
 * add sync support (getSynchInfo)
 * add client area section for grabbing integration code
+* add custom order type to make accounts show up under a different account type (instead of shared accounts)

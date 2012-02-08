@@ -4,7 +4,7 @@
 * Allows Hostbill to automate the management of goMobi accounts via XML-API
 *
 * @author Chris Talkington <chris@talkington.info>
-* @version 1.0.2
+* @version 1.0.3
 */
 class opensrs_publishing extends HostingModule {
 	protected $description = 'Resell publishing services (goMobi) from OpenSRS, fully automated solution with basic integration.';
